@@ -1,21 +1,21 @@
-package pl.danielstrielnikow.filmclub.domain.movie;
+package pl.danielstrielnikow.filmclub.domain.film.dto;
 
-import jakarta.persistence.*;
-import pl.danielstrielnikow.filmclub.domain.genre.Genre;
-
-@Entity
-public class Movie {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class FilmDto {
     private Long id;
     private String title;
     private String originalTitle;
     private Integer releaseYear;
-    @ManyToOne
-    @JoinColumn(name = "genre_id", referencedColumnName = "id")
-    private Genre genre;
+    private String genre;
     private boolean promoted;
+
+    public FilmDto(Long id, String title, String originalTitle, Integer releaseYear, String genre, boolean promoted) {
+        this.id = id;
+        this.title = title;
+        this.originalTitle = originalTitle;
+        this.releaseYear = releaseYear;
+        this.genre = genre;
+        this.promoted = promoted;
+    }
 
     public Long getId() {
         return id;
@@ -49,11 +49,11 @@ public class Movie {
         this.releaseYear = releaseYear;
     }
 
-    public Genre getGenre() {
+    public String getGenre() {
         return genre;
     }
 
-    public void setGenre(Genre genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
     }
 

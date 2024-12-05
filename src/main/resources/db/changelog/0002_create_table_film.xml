@@ -4,8 +4,8 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
-    <changeSet id="0001-1" author="javastart">
-        <createTable tableName="movie">
+    <changeSet id="0001-1" author="danielStielnikow">
+        <createTable tableName="film">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
@@ -15,7 +15,7 @@
             <column name="promoted" type="BOOLEAN"/>
             <column name="genre_id" type="BIGINT">
                 <constraints nullable="false"
-                             foreignKeyName="fk_movie_genre"
+                             foreignKeyName="fk_film_genre"
                              referencedTableName="genre"
                              referencedColumnNames="id"/>
             </column>
