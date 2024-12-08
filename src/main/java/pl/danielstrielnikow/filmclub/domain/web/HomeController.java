@@ -22,6 +22,6 @@ public class HomeController {
         model.addAttribute("heading", "Promowane filmy");
         model.addAttribute("description", "Filmy polecane przez nasz zespół");
         model.addAttribute("films", promotedFilms);
-        return "movie-listing";
+        return "film-listing";
     }
 }
