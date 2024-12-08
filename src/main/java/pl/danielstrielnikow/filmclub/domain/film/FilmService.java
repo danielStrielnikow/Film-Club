@@ -1,5 +1,6 @@
 package pl.danielstrielnikow.filmclub.domain.film;
 
+import org.aspectj.apache.bcel.generic.RET;
 import org.springframework.stereotype.Service;
 import pl.danielstrielnikow.filmclub.domain.film.dto.FilmDto;
 
@@ -24,5 +25,12 @@ public class FilmService {
 
     public Optional<FilmDto> findFilmById(long id) {
         return filmRepository.findById(id).map(FilmDtoMapper::map);
+    }
+
+    public List<FilmDto> findFilmByGenreName(String genre) {
+        return filmRepository.findAllByGenre_NameIgnoreCase(genre)
+                .stream()
+                .map(FilmDtoMapper::map)
+                .toList();
     }
 }

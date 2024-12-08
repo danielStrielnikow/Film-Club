@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface FilmRepository extends CrudRepository<Film, Long> {
     List<Film> findAllByPromotedIsTrue();
+    List<Film> findAllByGenre_NameIgnoreCase(String name);
 }
