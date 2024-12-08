@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.danielstrielnikow.filmclub.domain.film.dto.FilmDto;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FilmService {
@@ -19,5 +20,9 @@ public class FilmService {
                 .stream()
                 .map(FilmDtoMapper::map)
                 .toList();
+    }
+
+    public Optional<FilmDto> findFilmById(long id) {
+        return filmRepository.findById(id).map(FilmDtoMapper::map);
     }
 }
