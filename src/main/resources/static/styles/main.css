@@ -124,12 +124,37 @@ a {
     border: 1px #6d6d6d solid;
 }
 .movie-list-item-poster {
+    display: block;
+    max-width: 200px;
+}
+/*Karta filmu*/
+.list-heading,
+.list-description {
+    text-align: center;
+    margin: 16px 0;
+}
+/*Usunięcie dekoracji elementów listy (kropki na początku)*/
+.movie-list {
+    list-style-type: none;
+}
+/*Margines i ramka wokół pojedynczego filmu*/
+.movie-list-item {
+    margin-bottom: 16px;
+    display: flex;
+    border: 1px #6d6d6d solid;
+}
+/*Plakat - usuniecie paddingu*/
+.movie-list-item-poster {
+    display: block;
+    max-width: 200px;
+}
+/*Karta filmu*/
+.movie-list-item-card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 16px;
 }
-/*Karta filmu*/
 .movie-list-item-content > * {
     margin: 8px 0;
 }
@@ -278,16 +303,20 @@ textarea {
 /*większe inputy z paddingami*/
 .mc-form > input,
 .mc-form > textarea,
-.mc-form > button {
+.mc-form > button,
+.mc-form > select { /*dodany selektor*/
     font-size: 1.2rem;
     color: black;
     padding: 8px;
 }
-.mc-form > button {
-    margin-top: 16px;
-    background-color: white;
-    color: #ffc107;
-    border: none;
+/*Większy checkbox*/
+.mc-form > input[type=checkbox] {
+    transform: scale(1.5);
+    margin-left: 5px;
+}
+/*Biały kolor tekstu przy wyborze pliku*/
+.mc-form > input[type=file] {
+    color: white;
 }
 
 /*Notification */
