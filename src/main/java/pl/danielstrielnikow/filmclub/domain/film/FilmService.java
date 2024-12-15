@@ -5,7 +5,7 @@ import pl.danielstrielnikow.filmclub.domain.film.dto.FilmSaveDto;
 import pl.danielstrielnikow.filmclub.domain.film.dto.FilmDto;
 import pl.danielstrielnikow.filmclub.domain.genre.Genre;
 import pl.danielstrielnikow.filmclub.domain.genre.GenreRepository;
-import pl.danielstrielnikow.filmclub.domain.storage.FileStorageService;
+import pl.danielstrielnikow.filmclub.storage.FileStorageService;
 
 import java.util.List;
 import java.util.Optional;

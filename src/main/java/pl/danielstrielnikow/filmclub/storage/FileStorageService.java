@@ -1,4 +1,4 @@
-package pl.danielstrielnikow.filmclub.domain.storage;
+package pl.danielstrielnikow.filmclub.storage;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package pl.danielstrielnikow.filmclub.domain.web;
+package pl.danielstrielnikow.filmclub.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
