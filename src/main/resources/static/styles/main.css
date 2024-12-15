@@ -331,6 +331,10 @@ textarea {
     color: #ffc107;
     text-align: center;
 }
+.registration-link {
+    text-align: center;
+    margin-top: 32px;
+}
 
 
 
