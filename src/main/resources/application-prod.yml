@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/filmclub
+    username: root
+    password: daniel
+  liquibase:
+    contexts: prod
+  web:
+    resources:
+      static-locations: classpath:/static/,file:/Users/daniel/uploads
+  h2:
+    console:
+      enabled: false
+app:
+  storage:
+    location: /Users/daniel/uploads
