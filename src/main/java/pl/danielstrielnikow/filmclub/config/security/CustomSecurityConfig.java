@@ -1,11 +1,13 @@
 package pl.danielstrielnikow.filmclub.config.security;
 
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -28,6 +30,13 @@ public class CustomSecurityConfig {
         ) .logout(logout -> logout
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout/**", HttpMethod.GET.name()))
                 .logoutSuccessUrl("/login?logout").permitAll()
+        );
+        // Wyświetlenie konsoli H2
+        http.csrf(csrf -> csrf.ignoringRequestMatchers(PathRequest.toH2Console()));
+        http.headers(
+                config -> config.frameOptions(
+                        HeadersConfigurer.FrameOptionsConfig::sameOrigin
+                )
         );
         return http.build();
     }
