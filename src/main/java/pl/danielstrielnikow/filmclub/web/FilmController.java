@@ -11,6 +11,7 @@ import pl.danielstrielnikow.filmclub.domain.film.FilmService;
 import pl.danielstrielnikow.filmclub.domain.film.dto.FilmDto;
 import pl.danielstrielnikow.filmclub.domain.rating.RatingService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -39,5 +40,14 @@ public class FilmController {
             model.addAttribute("userRating", rating);
         }
         return "film";
+    }
+
+    @GetMapping("/top10")
+    public String findTop10(Model model) {
+        List<FilmDto> top10Films = filmService.findTopFilms(10);
+        model.addAttribute("heading", "Filmowe Top10");
+        model.addAttribute("description", "Filmy najlepiej oceniane przez użytkowników");
+        model.addAttribute("films", top10Films);
+        return "film-listing";
     }
 }

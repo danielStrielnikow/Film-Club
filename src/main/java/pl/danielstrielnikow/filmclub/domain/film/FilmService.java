@@ -6,6 +6,7 @@ import pl.danielstrielnikow.filmclub.domain.film.dto.FilmDto;
 import pl.danielstrielnikow.filmclub.domain.genre.Genre;
 import pl.danielstrielnikow.filmclub.domain.genre.GenreRepository;
 import pl.danielstrielnikow.filmclub.storage.FileStorageService;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,6 +41,7 @@ public class FilmService {
                 .map(FilmDtoMapper::map)
                 .toList();
     }
+
     public void addFilm(FilmSaveDto filmSaveDto) {
         Film film = new Film();
         film.setTitle(filmSaveDto.getTitle());
@@ -57,4 +59,12 @@ public class FilmService {
         }
         filmRepository.save(film);
     }
+
+    public List<FilmDto> findTopFilms(int size) {
+        Pageable page = Pageable.ofSize(size);
+        return filmRepository.findTopByRating(page).stream()
+                .map(FilmDtoMapper::map)
+                .toList();
+    }
 }
+
