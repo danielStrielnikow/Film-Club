@@ -2,6 +2,10 @@ package pl.danielstrielnikow.filmclub.domain.film;
 
 import jakarta.persistence.*;
 import pl.danielstrielnikow.filmclub.domain.genre.Genre;
+import pl.danielstrielnikow.filmclub.domain.rating.Rating;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Film {
@@ -18,6 +22,8 @@ public class Film {
     @ManyToOne
     @JoinColumn(name = "genre_id", referencedColumnName = "id")
     private Genre genre;
+    @OneToMany(mappedBy = "film")
+    private Set<Rating> ratings = new HashSet<>();
     private boolean promoted;
     private String poster;
 
@@ -99,5 +105,13 @@ public class Film {
 
     public void setPoster(String poster) {
         this.poster = poster;
+    }
+
+    public Set<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(Set<Rating> ratings) {
+        this.ratings = ratings;
     }
 }

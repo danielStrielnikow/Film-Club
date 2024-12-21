@@ -1,10 +1,15 @@
 package pl.danielstrielnikow.filmclub.domain.film;
 
 import pl.danielstrielnikow.filmclub.domain.film.dto.FilmDto;
+import pl.danielstrielnikow.filmclub.domain.rating.Rating;
 
 
 class FilmDtoMapper {
     static FilmDto map(Film film) {
+        double avgRating = film.getRatings().stream()
+                .map(Rating::getRating)
+                .mapToDouble(val -> val).average().orElse(0);
+        int ratingCount = film.getRatings().size();
         return new FilmDto(
                 film.getId(),
                 film.getTitle(),
@@ -15,7 +20,9 @@ class FilmDtoMapper {
                 film.getReleaseYear(),
                 film.getGenre().getName(),
                 film.isPromoted(),
-                film.getPoster()
+                film.getPoster(),
+                avgRating,
+                ratingCount
         );
     }
 }
