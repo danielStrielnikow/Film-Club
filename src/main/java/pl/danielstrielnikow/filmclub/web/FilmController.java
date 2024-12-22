@@ -6,13 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 import pl.danielstrielnikow.filmclub.domain.film.FilmService;
 import pl.danielstrielnikow.filmclub.domain.film.dto.FilmDto;
 import pl.danielstrielnikow.filmclub.domain.rating.RatingService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class FilmController {
@@ -49,5 +49,12 @@ public class FilmController {
         model.addAttribute("description", "Filmy najlepiej oceniane przez użytkowników");
         model.addAttribute("films", top10Films);
         return "film-listing";
+    }
+
+    @GetMapping("/film/search")
+    public String searchFilmByTitle(@RequestParam String title) {
+        Long filmId = filmService.findFilmIdByTitle(title)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Film not found"));
+        return "redirect:/film/" + filmId;
     }
 }

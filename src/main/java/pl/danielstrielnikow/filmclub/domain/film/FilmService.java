@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class FilmService {
@@ -84,6 +85,12 @@ public class FilmService {
     public int getTotalPagesForAllFilms(int size) {
         long totalFilms = filmRepository.count();  // Liczymy wszystkie filmy
         return (int) Math.max(1, Math.ceil((double) totalFilms / size));  // Liczba stron, co najmniej 1
+    }
+
+
+    public Optional<FilmDto> findFilmIdByTitle(String title) {
+        return filmRepository.findByTitleIgnoreCase(title)
+                .map(FilmDtoMapper::map);
     }
 
 }
