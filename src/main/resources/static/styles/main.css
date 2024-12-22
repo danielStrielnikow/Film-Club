@@ -336,5 +336,76 @@ textarea {
     margin-top: 32px;
 }
 
+/* Panigrancja */
+/* Styl kontenera paginacji */
+.pagination-container {
+    text-align: center;
+    margin-top: 20px;
+}
 
+/* Styl dla listy paginacji */
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
 
+/* Styl dla pojedynczego elementu nawigacji (strona) */
+ul.pagination li {
+    display: inline;
+}
+
+/* Styl dla linku paginacji */
+ul.pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    transition: background-color .3s;
+}
+
+/* Styl dla pierwszego i ostatniego elementu paginacji */
+.pagination li:first-child a {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination li:last-child a {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* Styl dla aktywnej strony */
+ul.pagination li a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+/* Styl dla linków, które nie są aktywne */
+ul.pagination li a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+/* Styl dla linków paginacji, które są włączone */
+ul.pagination li a {
+    cursor: pointer;
+}
+
+/* Styl dla przycisków paginacji (Poprzednia, Następna) */
+.pagination li a {
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+}
+
+.pagination li a:hover {
+    background-color: #ddd;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #ffc107; /* Kolor tła dla aktywnej strony */
+    color: white; /* Kolor tekstu dla aktywnej strony */
+}

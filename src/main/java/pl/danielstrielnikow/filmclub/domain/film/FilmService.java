@@ -17,11 +17,16 @@ public class FilmService {
     private final FilmRepository filmRepository;
     private final GenreRepository genreRepository;
     private final FileStorageService fileStorageService;
+    private final PagingRepository pagingRepository;
 
-    public FilmService(FilmRepository filmRepository, GenreRepository genreRepository, FileStorageService fileStorageService) {
+    public FilmService(FilmRepository filmRepository,
+                       GenreRepository genreRepository,
+                       FileStorageService fileStorageService,
+                       PagingRepository pagingRepository) {
         this.filmRepository = filmRepository;
         this.genreRepository = genreRepository;
         this.fileStorageService = fileStorageService;
+        this.pagingRepository = pagingRepository;
     }
 
     public List<FilmDto> findAllPromotedFilms() {
@@ -66,5 +71,20 @@ public class FilmService {
                 .map(FilmDtoMapper::map)
                 .toList();
     }
+
+    public List<FilmDto> findAllFilmsPaginated(int page, int size) {
+        // Zabezpieczamy przed przekroczeniem liczby stron
+        page = Math.max(page, 0); // Zapewnia, że page nie będzie mniejsze niż 0
+        Pageable pageable = Pageable.ofSize(size).withPage(page);
+        return pagingRepository.findAll(pageable).stream()
+                .map(FilmDtoMapper::map)
+                .toList();
+    }
+
+    public int getTotalPagesForAllFilms(int size) {
+        long totalFilms = filmRepository.count();  // Liczymy wszystkie filmy
+        return (int) Math.max(1, Math.ceil((double) totalFilms / size));  // Liczba stron, co najmniej 1
+    }
+
 }
 

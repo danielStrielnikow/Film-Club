@@ -135,5 +135,7 @@ public class FilmDto {
     public void setRatingCount(int ratingCount) {
         this.ratingCount = ratingCount;
     }
+
+
 }
 
