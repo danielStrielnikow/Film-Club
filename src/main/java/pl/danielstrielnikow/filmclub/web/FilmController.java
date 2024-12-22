@@ -51,10 +51,10 @@ public class FilmController {
         return "film-listing";
     }
 
-    @GetMapping("/film/search")
+    @GetMapping("/film/szukaj-film")
     public String searchFilmByTitle(@RequestParam String title) {
         Long filmId = filmService.findFilmIdByTitle(title)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Film not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Film not found")).getId();
         return "redirect:/film/" + filmId;
     }
 }

@@ -451,38 +451,26 @@ ul.pagination li a {
     border-radius: 50px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 3px 8px;
-    transition: width 0.3s ease;
-    position: relative; /* Dodajemy dla lepszej kontroli */
+    padding: 5px 10px;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    position: relative; /* Konieczne do kontrolowania elementów wewnętrznych */
+    border: 1px solid #ccc;
+    width: auto;
 }
 
-/* Ikona lupy powinna być zawsze widoczna */
+/* Ikona lupy */
 .search-container .search-icon {
     color: #333;
-    font-size: 20px; /* Ustalmy stały rozmiar ikony */
-    transition: color 0.3s ease; /* Płynna zmiana koloru */
+    font-size: 20px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+.search-icon {
+    background: none;
+    border: none;
 }
 
-/* Dla małych ekranów ukrywamy input i pokazujemy tylko ikonę lupy */
-@media (max-width: 768px) {
-    .input-bar {
-        display: none; /* Ukryj input na mniejszych ekranach */
-        width: 0;
-    }
-
-    .search-container.expanded .input-bar {
-        display: block; /* Pokaż input po kliknięciu */
-        width: 150px; /* Ustaw szerokość, kiedy pole jest rozwinięte */
-    }
-
-    /* Zmieniamy kolor ikony przy rozwiniętej wyszukiwarce */
-    .search-container.expanded .search-icon {
-        color: orangered; /* Kolor zmienia się przy rozwinięciu */
-    }
-}
-
-/* Styl dla inputa, gdy jest widoczny */
+/* Input pola wyszukiwania */
 .input-bar {
     width: 150px;
     border: none;
@@ -490,16 +478,51 @@ ul.pagination li a {
     background: none;
     font-size: 16px;
     color: #333;
+    padding: 5px;
+    transition: width 0.3s ease;
 }
 
 .input-bar::placeholder {
     color: #888;
 }
 
-/* Styl na hover dla ikony magnifying-glass */
+/* Dla małych ekranów */
+@media (max-width: 768px) {
+    .input-bar {
+        display: none; /* Ukryj pole tekstowe domyślnie */
+    }
+
+    .search-container.expanded .input-bar {
+        display: block;
+        width: 150px; /* Ustaw szerokość, kiedy pole jest rozwinięte */
+    }
+
+    .search-container.expanded .search-icon {
+        color: orangered;
+    }
+}
+
+/* Efekt hover na ikonie */
 .search-container:hover .search-icon {
     color: orangered;
-    cursor: pointer;
+    transform: scale(1.1);
 }
+
+/* Styl na aktywny stan wyszukiwania */
+.search-container.expanded {
+    background-color: #f9f9f9;
+    border-color: orangered;
+}
+
+/* Efekt hover na kontenerze */
+.search-container:hover {
+    border-color: #999;
+}
+
+/* Animacja rozwijania dla inputa */
+.search-container.expanded .input-bar {
+    width: 150px;
+}
+
 
 
