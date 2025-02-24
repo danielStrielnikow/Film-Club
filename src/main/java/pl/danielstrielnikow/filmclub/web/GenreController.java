@@ -29,7 +29,6 @@ public class GenreController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         List<FilmDto> films = filmService.findFilmByGenreName(name);
         model.addAttribute("heading", genre.getName());
-        model.addAttribute("description", genre.getDescription());
         model.addAttribute("films", films);
         return "film-listing";
     }

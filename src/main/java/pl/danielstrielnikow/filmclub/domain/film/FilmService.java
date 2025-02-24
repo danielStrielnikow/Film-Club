@@ -1,13 +1,18 @@
 package pl.danielstrielnikow.filmclub.domain.film;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import pl.danielstrielnikow.filmclub.domain.film.dto.FilmSaveDto;
+import org.springframework.transaction.annotation.Transactional;
+import pl.danielstrielnikow.filmclub.api.FilmApi;
+import pl.danielstrielnikow.filmclub.api.dto.FilmApiDto;
+import pl.danielstrielnikow.filmclub.api.dto.FilmApiMapper;
 import pl.danielstrielnikow.filmclub.domain.film.dto.FilmDto;
+import pl.danielstrielnikow.filmclub.domain.film.dto.FilmSaveDto;
 import pl.danielstrielnikow.filmclub.domain.genre.Genre;
 import pl.danielstrielnikow.filmclub.domain.genre.GenreRepository;
 import pl.danielstrielnikow.filmclub.storage.FileStorageService;
-import org.springframework.data.domain.Pageable;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,15 +23,17 @@ public class FilmService {
     private final GenreRepository genreRepository;
     private final FileStorageService fileStorageService;
     private final PagingRepository pagingRepository;
+    private final FilmApi filmApi;
 
     public FilmService(FilmRepository filmRepository,
                        GenreRepository genreRepository,
                        FileStorageService fileStorageService,
-                       PagingRepository pagingRepository) {
+                       PagingRepository pagingRepository, FilmApi filmApi) {
         this.filmRepository = filmRepository;
         this.genreRepository = genreRepository;
         this.fileStorageService = fileStorageService;
         this.pagingRepository = pagingRepository;
+        this.filmApi = filmApi;
     }
 
     public List<FilmDto> findAllPromotedFilms() {
@@ -92,5 +99,21 @@ public class FilmService {
                 .map(FilmDtoMapper::map);
     }
 
-}
+
+    @Transactional
+    public void fetchAndSaveFilms() {
+        try {
+            List<FilmApiDto> apiDtos = filmApi.fetchFilmFromApi();
+
+            List<Film> list = apiDtos.stream()
+                    .map(FilmApiMapper::mapToEntity)
+                    .toList();
+
+            filmRepository.saveAll(list);
+
+    } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+    }}
 

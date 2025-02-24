@@ -33,7 +33,6 @@ public class GenreService {
     public void addGenre(GenreDto genre) {
         Genre genreToSave = new Genre();
         genreToSave.setName(genre.getName());
-        genreToSave.setDescription(genre.getDescription());
         genreRepository.save(genreToSave);
     }
 }

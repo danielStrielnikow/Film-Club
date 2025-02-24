@@ -5,6 +5,9 @@ spring:
     password: daniel
   liquibase:
     contexts: prod
+  jpa:
+    hibernate:
+      ddl-auto: update
   web:
     resources:
       static-locations: classpath:/static/,file:/Users/daniel/uploads

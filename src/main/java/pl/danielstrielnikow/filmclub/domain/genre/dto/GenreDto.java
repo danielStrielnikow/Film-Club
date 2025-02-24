@@ -3,15 +3,13 @@ package pl.danielstrielnikow.filmclub.domain.genre.dto;
 public class GenreDto {
     private Long id;
     private String name;
-    private String description;
 
     public GenreDto() {
     }
 
-    public GenreDto(Long id, String name, String description) {
+    public GenreDto(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.description = description;
     }
 
     public Long getId() {
@@ -30,11 +28,5 @@ public class GenreDto {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }
