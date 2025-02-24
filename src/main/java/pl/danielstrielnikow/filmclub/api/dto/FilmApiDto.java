@@ -3,11 +3,8 @@ package pl.danielstrielnikow.filmclub.api.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import pl.danielstrielnikow.filmclub.domain.genre.Genre;
-import pl.danielstrielnikow.filmclub.domain.rating.Rating;
 
 import java.util.List;
-import java.util.Set;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FilmApiDto {
@@ -22,8 +19,8 @@ public class FilmApiDto {
     private String youtubeTrailerId;
     @JsonProperty("startYear")
     private Integer releaseYear;
-    //    @JsonProperty("genres")
-//    private List<String> genre;
+    @JsonProperty("genres")
+    private List<String> genres;
     private boolean promoted;
     @JsonProperty("primaryImage")
     private String poster;
@@ -33,7 +30,7 @@ public class FilmApiDto {
 //    private int ratingCount;
 
 
-    public FilmApiDto(Long id, String title, String originalTitle, String shortDescription, String description, String youtubeTrailerId, Integer releaseYear, boolean promoted, String poster) {
+    public FilmApiDto(Long id, String title, String originalTitle, String shortDescription, String description, String youtubeTrailerId, Integer releaseYear, List<String> genres, boolean promoted, String poster) {
         this.id = id;
         this.title = title;
         this.originalTitle = originalTitle;
@@ -41,6 +38,7 @@ public class FilmApiDto {
         this.description = description;
         this.youtubeTrailerId = youtubeTrailerId;
         this.releaseYear = releaseYear;
+        this.genres = genres;
         this.promoted = promoted;
         this.poster = poster;
     }
@@ -116,6 +114,14 @@ public class FilmApiDto {
     public void setPoster(String poster) {
         this.poster = poster;
     }
+
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
+    }
 }
 
 
@@ -135,11 +141,4 @@ public class FilmApiDto {
 //        this.ratingCount = ratingCount;
 //    }
 //
-//    public List<String> getGenre() {
-//        return genre;
-//    }
-//
-//    public void setGenre(List<String> genre) {
-//        this.genre = genre;
-//    }
-//}
+

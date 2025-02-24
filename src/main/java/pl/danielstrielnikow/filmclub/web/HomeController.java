@@ -24,16 +24,24 @@ public class HomeController {
         // Paginowane filmy
         List<FilmDto> allFilmsPaginated = filmService.findAllFilmsPaginated(page, size);
 
-        // Dodajemy nagłówek, opis, filmy i informacje o paginacji
+        // Liczba stron
+        int totalPages = filmService.getTotalPagesForAllFilms(size);
+
+        // Określamy początek i koniec zakresu stron do wyświetlenia (zawsze 10 przycisków)
+        int startPage = Math.max(page - 5, 0); // Aby nie przekroczyć strony 0
+        int endPage = Math.min(startPage + 9, totalPages - 1); // Maksymalnie 10 przycisków
+
         model.addAttribute("heading", "Promowane filmy");
         model.addAttribute("description", "Filmy polecane przez nasz zespół");
         model.addAttribute("films", allFilmsPaginated); // Przekazujemy paginowane filmy
         model.addAttribute("currentPage", page); // Numeracja od 1 strony
-        model.addAttribute("totalPages", filmService.getTotalPagesForAllFilms(size)); // Liczba stron
+        model.addAttribute("totalPages", totalPages); // Liczba stron
+        model.addAttribute("startPage", startPage); // Początek zakresu stron
+        model.addAttribute("endPage", endPage); // Koniec zakresu stron
 
-        // Dodajemy atrybut do modelu, który wskazuje, że jesteśmy na stronie głównej
         model.addAttribute("isHomePage", true);
         return "film-listing";
     }
+
 
 }

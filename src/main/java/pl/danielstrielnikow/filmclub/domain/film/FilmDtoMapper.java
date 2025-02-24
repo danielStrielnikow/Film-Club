@@ -18,7 +18,7 @@ class FilmDtoMapper {
                 film.getDescription(),
                 film.getYoutubeTrailerId(),
                 film.getReleaseYear(),
-                film.getGenre().getName(),
+                film.getGenres(),
                 film.isPromoted(),
                 film.getPoster(),
                 avgRating,

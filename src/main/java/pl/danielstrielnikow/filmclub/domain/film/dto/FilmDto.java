@@ -1,5 +1,9 @@
 package pl.danielstrielnikow.filmclub.domain.film.dto;
 
+import pl.danielstrielnikow.filmclub.domain.genre.Genre;
+
+import java.util.List;
+
 public class FilmDto {
     private Long id;
     private String title;
@@ -8,24 +12,13 @@ public class FilmDto {
     private String description;
     private String youtubeTrailerId;
     private Integer releaseYear;
-    private String genre;
+    private List<Genre> genre;
     private boolean promoted;
     private String poster;
     private double avgRating;
     private int ratingCount;
 
-    public FilmDto(Long id,
-                   String title,
-                   String originalTitle,
-                   String shortDescription,
-                   String description,
-                   String youtubeTrailerId,
-                   Integer releaseYear,
-                   String genre,
-                   boolean promoted,
-                   String poster,
-                   Double avgRating,
-                   int ratingCount) {
+    public FilmDto(Long id, String title, String originalTitle, String shortDescription, String description, String youtubeTrailerId, Integer releaseYear, List<Genre> genre, boolean promoted, String poster, double avgRating, int ratingCount) {
         this.id = id;
         this.title = title;
         this.originalTitle = originalTitle;
@@ -96,11 +89,11 @@ public class FilmDto {
         this.releaseYear = releaseYear;
     }
 
-    public String getGenre() {
+    public List<Genre> getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(List<Genre> genre) {
         this.genre = genre;
     }
 

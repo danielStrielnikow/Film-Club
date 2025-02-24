@@ -13,6 +13,7 @@ import pl.danielstrielnikow.filmclub.domain.genre.GenreRepository;
 import pl.danielstrielnikow.filmclub.storage.FileStorageService;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,16 +24,18 @@ public class FilmService {
     private final GenreRepository genreRepository;
     private final FileStorageService fileStorageService;
     private final PagingRepository pagingRepository;
+    private final FilmApiMapper filmApiMapper;
     private final FilmApi filmApi;
 
     public FilmService(FilmRepository filmRepository,
                        GenreRepository genreRepository,
                        FileStorageService fileStorageService,
-                       PagingRepository pagingRepository, FilmApi filmApi) {
+                       PagingRepository pagingRepository, FilmApiMapper filmApiMapper, FilmApi filmApi) {
         this.filmRepository = filmRepository;
         this.genreRepository = genreRepository;
         this.fileStorageService = fileStorageService;
         this.pagingRepository = pagingRepository;
+        this.filmApiMapper = filmApiMapper;
         this.filmApi = filmApi;
     }
 
@@ -48,7 +51,7 @@ public class FilmService {
     }
 
     public List<FilmDto> findFilmByGenreName(String genre) {
-        return filmRepository.findAllByGenre_NameIgnoreCase(genre)
+        return filmRepository.findAllByGenres_NameIgnoreCase(genre)
                 .stream()
                 .map(FilmDtoMapper::map)
                 .toList();
@@ -63,8 +66,9 @@ public class FilmService {
         film.setShortDescription(filmSaveDto.getShortDescription());
         film.setDescription(filmSaveDto.getDescription());
         film.setYoutubeTrailerId(filmSaveDto.getYoutubeTrailerId());
-        Genre genre = genreRepository.findByNameIgnoreCase(filmSaveDto.getGenre()).orElseThrow();
-        film.setGenre(genre);
+        Genre genre = genreRepository.findByNameIgnoreCase(filmSaveDto.getGenre())
+                .orElseThrow(() -> new RuntimeException("Genre not found"));
+        film.setGenres(Collections.singletonList(genre));
         if (filmSaveDto.getPoster() != null) {
             String savedFileName = fileStorageService.saveImage(filmSaveDto.getPoster());
             film.setPoster(savedFileName);
@@ -106,14 +110,14 @@ public class FilmService {
             List<FilmApiDto> apiDtos = filmApi.fetchFilmFromApi();
 
             List<Film> list = apiDtos.stream()
-                    .map(FilmApiMapper::mapToEntity)
+                    .map(filmApiMapper::mapToEntity)
                     .toList();
-
             filmRepository.saveAll(list);
 
-    } catch (IOException | InterruptedException e) {
+        } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
 
-    }}
+    }
+}
 

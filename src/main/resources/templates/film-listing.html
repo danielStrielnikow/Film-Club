@@ -18,10 +18,11 @@
                 <!-- Link do strony pojedynczego filmu typu /film/5 -->
                 <a href="#" th:href="@{|/film/${film.id}|}">
                     <!-- Po uruchomieniu aplikacji ścieżka do placeholdera plakatu wygląda nieco inaczej -->
-                    <img src="../static/img/poster-placeholder.png"
-                         th:src="${film.poster ne null} ? @{|/img/${film.poster}|} : @{/img/poster-placeholder.png}"
+                    <img th:src="${film.poster != null} ? ${film.poster} : @{/img/poster-placeholder.png}"
                          alt="tytuł filmu"
+                         th:alt="${film.title}"
                          class="movie-list-item-poster">
+
                 </a>
                 <div class="movie-list-item-card">
                     <div class="movie-list-item-content">
@@ -44,24 +45,29 @@
             </li>
         </ul>
         <!-- Paginacja -->
+        <!-- Paginacja -->
         <div class="pagination-container" th:if="${isHomePage}">
             <ul class="pagination">
-                <!-- Poprzednia strona -->
-                <li class="page-item" th:if="${currentPage > 1}">
-                    <a class="page-link" th:href="@{|/?page=${currentPage - 1}|}">«</a>
+                <!-- Pierwsza strona -->
+                <li class="page-item" th:if="${currentPage > 0}">
+                    <a class="page-link" th:href="@{|/?page=0|}">««</a>
                 </li>
 
+
                 <!-- Numery stron -->
-                <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}" th:classappend="${i == currentPage ? 'active' : ''}">
+                <li class="page-item" th:each="i : ${#numbers.sequence(startPage, endPage)}"
+                    th:classappend="${i == currentPage ? 'active' : ''}">
                     <a class="page-link" th:href="@{|/?page=${i}|}" th:text="${i + 1}"></a>
                 </li>
 
-                <!-- Następna strona -->
-                <li class="page-item" th:if="${currentPage < totalPages}">
-                    <a class="page-link" th:href="@{|/?page=${currentPage + 1}|}">»</a>
+
+                <!-- Ostatnia strona -->
+                <li class="page-item" th:if="${currentPage < totalPages - 1}">
+                    <a class="page-link" th:href="@{|/?page=${totalPages - 1}|}">»»</a>
                 </li>
             </ul>
         </div>
+
 
 
     </main>
