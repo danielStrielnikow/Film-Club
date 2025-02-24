@@ -45,7 +45,6 @@
             </li>
         </ul>
         <!-- Paginacja -->
-        <!-- Paginacja -->
         <div class="pagination-container" th:if="${isHomePage}">
             <ul class="pagination">
                 <!-- Pierwsza strona -->
@@ -64,6 +63,32 @@
                 <!-- Ostatnia strona -->
                 <li class="page-item" th:if="${currentPage < totalPages - 1}">
                     <a class="page-link" th:href="@{|/?page=${totalPages - 1}|}">»»</a>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="pagination-container" th:if="${isGenrePage}">
+            <ul class="pagination">
+                <!-- Pierwsza strona -->
+                <li class="page-item" th:if="${currentPage > 0}">
+                    <a class="page-link"
+                       th:href="@{/gatunek/{name}(name=${genre.name}, page=0)}">««</a>
+                </li>
+
+                <!-- Numery stron -->
+                <li class="page-item"
+                    th:each="i : ${#numbers.sequence(startPage, endPage)}"
+                    th:classappend="${i == currentPage} ? 'active' : ''">
+                    <a class="page-link"
+                       th:href="@{/gatunek/{name}(name=${genre.name}, page=${i})}"
+                       th:text="${i + 1}"></a>
+                </li>
+
+                <!-- Ostatnia strona -->
+                <li class="page-item" th:if="${currentPage < totalPages - 1}">
+                    <a class="page-link"
+                       th:href="@{/gatunek/{name}(name=${genre.name}, page=${totalPages - 1})}">»»</a>
                 </li>
             </ul>
         </div>

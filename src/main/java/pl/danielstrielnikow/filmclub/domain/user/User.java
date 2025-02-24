@@ -16,8 +16,16 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
+            joinColumns = @JoinColumn(
+                    name = "user_id",
+                    referencedColumnName = "id",
+                    foreignKey = @ForeignKey(name = "FK_USER_ROLES_USER")
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id",
+                    referencedColumnName = "id",
+                    foreignKey = @ForeignKey(name = "FK_USER_ROLES_ROLE")
+            )
     )
     private Set<UserRole> roles = new HashSet<>();
 

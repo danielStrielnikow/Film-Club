@@ -1,5 +1,7 @@
 package pl.danielstrielnikow.filmclub.domain.film;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -91,6 +93,22 @@ public class FilmService {
                 .map(FilmDtoMapper::map)
                 .toList();
     }
+
+    public List<FilmDto> findFilmsByGenrePaginated(String genre, int page, int size) {
+        page = Math.max(page, 0);
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Film> filmPage = filmRepository.findAllByGenres_NameIgnoreCase(genre, pageable);
+
+        return filmPage.stream()
+                .map(FilmDtoMapper::map)
+                .toList();
+    }
+
+    public int getTotalPagesForFilmsByGenre(String genre, int size) {
+        long totalFilms = filmRepository.countByGenres_NameIgnoreCase(genre);
+        return (int) Math.ceil((double) totalFilms / size);
+    }
+
 
     public int getTotalPagesForAllFilms(int size) {
         long totalFilms = filmRepository.count();  // Liczymy wszystkie filmy
