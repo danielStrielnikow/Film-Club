@@ -32,6 +32,8 @@ public class Film {
     private Set<Rating> ratings = new HashSet<>();
     private boolean promoted;
     private String poster;
+    @Column(name = "imdb_rating")
+    private Double imdbRating;
 
     public Long getId() {
         return id;
@@ -119,5 +121,13 @@ public class Film {
 
     public void setPoster(String poster) {
         this.poster = poster;
+    }
+
+    public Double getImdbRating() {
+        return imdbRating;
+    }
+
+    public void setImdbRating(Double imdbRating) {
+        this.imdbRating = imdbRating;
     }
 }

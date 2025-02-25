@@ -22,7 +22,8 @@ class FilmDtoMapper {
                 film.isPromoted(),
                 film.getPoster(),
                 avgRating,
-                ratingCount
+                ratingCount,
+                film.getImdbRating()
         );
     }
 }

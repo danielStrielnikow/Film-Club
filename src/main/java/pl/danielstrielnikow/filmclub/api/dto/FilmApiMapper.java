@@ -43,7 +43,7 @@ public class FilmApiMapper {
         film.setGenres(genres);
         film.setPromoted(true);
         film.setPoster(apiDto.getPoster());
-//        film.setRatings(apiDto.getAvgRating());
+        film.setImdbRating(apiDto.getImdbRating());
 
         return film;
     }

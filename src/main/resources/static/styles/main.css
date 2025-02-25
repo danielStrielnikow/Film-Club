@@ -209,28 +209,36 @@ a {
     font-size: 2rem;
 }
 
-/*Wyśrodkowanie głosowania*/
+/* Wyśrodkowanie głosowania */
 .movie-rating-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     min-width: 200px;
-}
-
-/*Wyśrodkowanie tekstu Twoja ocena*/
-.movie-rating-form > p {
     text-align: center;
-    margin-bottom: 16px;
 }
 
-/*Powiększenie i wyśrodkowanie średniej oceny*/
+/* Styl dla podtytułów */
+.rating-subtitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #444;
+}
+
+/* Powiększenie i wyśrodkowanie średniej oceny */
 .movie-rating-value {
-    font-size: 4rem;
-    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 5px 0;
 }
 
-/*Styl dla przycisków z ocenami*/
+/* Stylizacja oceny IMDb */
+.imdb-rating .movie-rating-value {
+    color: #E5A00D; /* Kolor IMDb */
+}
+
+/* Styl dla przycisków z ocenami */
 .movie-rating-button {
     background-color: #ffc107;
     border: 0;
@@ -240,15 +248,34 @@ a {
     opacity: 0.8;
 }
 
-/*Usunięcie przezroczystości po najechaniu na przycisk*/
+/* Usunięcie przezroczystości po najechaniu na przycisk */
 .movie-rating-button:hover {
     opacity: 1;
 }
 
-/*Odstępy między elementami w ramce z głosowaniem*/
+/* Odstępy między elementami */
 .movie-rating-container > * {
-    margin: 8px 0;
+    margin: 12px 0;
 }
+
+.imdb-rating {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.imdb-rating .movie-rating-value {
+    border-radius: 5px;
+    font-size: 1.4rem;
+    color: #555;
+}
+
+.imdb-rating .movie-rating-value.imdb {
+    color: #ffca28; /* Złota barwa dla oceny IMDb */
+}
+
+
 
 /*Ramka dla boxu z głosowaniem*/
 .movie-section {

@@ -17,8 +17,9 @@ public class FilmDto {
     private String poster;
     private double avgRating;
     private int ratingCount;
+    private Double imdbRating;
 
-    public FilmDto(Long id, String title, String originalTitle, String shortDescription, String description, String youtubeTrailerId, Integer releaseYear, List<Genre> genre, boolean promoted, String poster, double avgRating, int ratingCount) {
+    public FilmDto(Long id, String title, String originalTitle, String shortDescription, String description, String youtubeTrailerId, Integer releaseYear, List<Genre> genre, boolean promoted, String poster, double avgRating, int ratingCount, Double imdbRating) {
         this.id = id;
         this.title = title;
         this.originalTitle = originalTitle;
@@ -31,6 +32,7 @@ public class FilmDto {
         this.poster = poster;
         this.avgRating = avgRating;
         this.ratingCount = ratingCount;
+        this.imdbRating = imdbRating;
     }
 
     public Long getId() {
@@ -130,5 +132,12 @@ public class FilmDto {
     }
 
 
+    public Double getImdbRating() {
+        return imdbRating;
+    }
+
+    public void setImdbRating(Double imdbRating) {
+        this.imdbRating = imdbRating;
+    }
 }
 

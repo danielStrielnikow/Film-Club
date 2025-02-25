@@ -24,13 +24,15 @@ public class FilmApiDto {
     private boolean promoted;
     @JsonProperty("primaryImage")
     private String poster;
-//    @JsonProperty("averageRating")
-//    private Set<Rating> avgRating;
-//    @JsonProperty("numVotes")
-//    private int ratingCount;
+    @JsonProperty("averageRating")
+    private Double imdbRating;
 
 
-    public FilmApiDto(Long id, String title, String originalTitle, String shortDescription, String description, String youtubeTrailerId, Integer releaseYear, List<String> genres, boolean promoted, String poster) {
+    public FilmApiDto(Long id, String title, String originalTitle,
+                      String shortDescription, String description,
+                      String youtubeTrailerId, Integer releaseYear,
+                      List<String> genres, boolean promoted,
+                      String poster, Double imdbRating) {
         this.id = id;
         this.title = title;
         this.originalTitle = originalTitle;
@@ -41,6 +43,7 @@ public class FilmApiDto {
         this.genres = genres;
         this.promoted = promoted;
         this.poster = poster;
+        this.imdbRating = imdbRating;
     }
 
     public Long getId() {
@@ -122,23 +125,13 @@ public class FilmApiDto {
     public void setGenres(List<String> genres) {
         this.genres = genres;
     }
+
+    public Double getImdbRating() {
+        return imdbRating;
+    }
+
+    public void setImdbRating(Double imdbRating) {
+        this.imdbRating = imdbRating;
+    }
 }
-
-
-//    public Set<Rating> getAvgRating() {
-//        return avgRating;
-//    }
-//
-//    public void setAvgRating(Set<Rating> avgRating) {
-//        this.avgRating = avgRating;
-//    }
-//
-//    public int getRatingCount() {
-//        return ratingCount;
-//    }
-//
-//    public void setRatingCount(int ratingCount) {
-//        this.ratingCount = ratingCount;
-//    }
-//
 

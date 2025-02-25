@@ -1,5 +1,6 @@
 package pl.danielstrielnikow.filmclub.web.admin;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,5 +40,11 @@ public class FilmManagementController {
                 "Film %s został zapisany".formatted(film.getTitle())
         );
         return "redirect:/admin";
+    }
+
+    @PostMapping("/admin/aktulizuj")
+    public ResponseEntity<String> refreshMovies() {
+        filmService.fetchAndSaveFilms();
+        return ResponseEntity.ok("Filmy zostały zaktualizowane");
     }
 }

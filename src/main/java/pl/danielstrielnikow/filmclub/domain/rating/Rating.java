@@ -17,14 +17,16 @@ public class Rating {
     @JoinColumn(name = "film_id")
     private Film film;
     private Integer rating;
+    private Integer avgImdbRating;
 
     public Rating() {
     }
 
-    public Rating(User user, Film film, Integer rating) {
+    public Rating(User user, Film film, Integer rating, Integer avgImdbRating) {
         this.user = user;
         this.film = film;
         this.rating = rating;
+        this.avgImdbRating = avgImdbRating;
     }
 
     public Long getId() {
@@ -57,5 +59,13 @@ public class Rating {
 
     public void setRating(Integer rating) {
         this.rating = rating;
+    }
+
+    public Integer getAvgImdbRating() {
+        return avgImdbRating;
+    }
+
+    public void setAvgImdbRating(Integer avgImdbRating) {
+        this.avgImdbRating = avgImdbRating;
     }
 }
