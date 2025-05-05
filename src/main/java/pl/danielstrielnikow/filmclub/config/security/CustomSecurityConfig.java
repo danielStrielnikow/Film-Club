@@ -32,8 +32,6 @@ public class CustomSecurityConfig {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout/**", HttpMethod.GET.name()))
                 .logoutSuccessUrl("/login?logout").permitAll()
         );
-        // Wyświetlenie konsoli H2
-        http.csrf(csrf -> csrf.ignoringRequestMatchers(PathRequest.toH2Console()));
         http.headers(
                 config -> config.frameOptions(
                         HeadersConfigurer.FrameOptionsConfig::sameOrigin

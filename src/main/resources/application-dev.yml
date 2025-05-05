@@ -1,11 +1,19 @@
 spring:
   datasource:
-    url: ${H2_DB_URL}
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   liquibase:
     contexts: dev
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
   web:
     resources:
-      static-locations: classpath:/static/,file:./uploads/
+      static-locations: classpath:/static/,file:/Users/daniel/uploads
 app:
   storage:
-    location: ./uploads/
+    location: /Users/daniel/uploads
