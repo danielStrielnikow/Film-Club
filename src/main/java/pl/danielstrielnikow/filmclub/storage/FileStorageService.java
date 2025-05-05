@@ -29,7 +29,11 @@ public class FileStorageService {
 
     private void checkDirectoryExists(Path path) throws FileNotFoundException {
         if (Files.notExists(path)) {
-            throw new FileNotFoundException("Directory %s does not exist.".formatted(path.toString()));
+            try {
+                Files.createDirectories(path); // Tworzy katalogi, jeśli nie istnieją
+            } catch (IOException e) {
+                throw new FileNotFoundException("Directory %s does not exist and could not be created.".formatted(path.toString()));
+            }
         }
     }
 

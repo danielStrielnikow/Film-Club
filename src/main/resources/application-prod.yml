@@ -13,7 +13,7 @@ spring:
         format_sql: true
   web:
     resources:
-      static-locations: classpath:/static/,file:/Users/daniel/uploads
+      static-locations: classpath:/static/,file:/tmp/uploads
 app:
   storage:
-    location: /Users/daniel/uploads
+    location: /tmp/uploads
