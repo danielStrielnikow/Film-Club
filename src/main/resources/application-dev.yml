@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:test
+    url: ${H2_DB_URL}
   liquibase:
     contexts: dev
   web:

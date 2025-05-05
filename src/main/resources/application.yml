@@ -3,4 +3,4 @@ spring:
     change-log: classpath:db/changelog/master.xml
 
 api:
-  key: 39250dbd32mshaf0118c27813cabp10fe99jsn9428848bc313
+  key: ${API_KEY}
