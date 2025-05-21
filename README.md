@@ -34,6 +34,7 @@
     - [Installation](#installation)
     - [Usage](#usage)
 - [Screenshots](#screenshots)
+- [Demo application](#demo-application)
 - [Contributing](#contributing)
 
 ---
@@ -130,6 +131,10 @@ App will be available at [http://localhost:8080](http://localhost:8080)
 ![Admin Panel](./screenshots/login.png)
 
 ---
+
+## Demo application
+
+💻 [FilmClub – version demo](https://filmclub-z7r9.onrender.com/)
 
 ## Contributing
 
