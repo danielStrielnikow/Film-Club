@@ -18,7 +18,6 @@
 <img src="https://img.shields.io/badge/Docker-2496ED.svg?style=flat&logo=Docker&logoColor=white" alt="Docker">
 <img src="https://img.shields.io/badge/HTML-005FAD.svg?style=flat&logo=html5&logoColor=white" alt="HTML">
 <img src="https://img.shields.io/badge/CSS-1572B6.svg?style=flat&logo=css3&logoColor=white" alt="CSS">
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=flat&logo=javascript&logoColor=black" alt="JavaScript">
 
 </div>
 <br>
