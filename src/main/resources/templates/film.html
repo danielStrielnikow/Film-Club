@@ -32,8 +32,7 @@
                             Gatunek:
                             <span th:each="g, iterStat : ${film.genre}">
                                 <a th:href="@{/gatunek/{name}(name=${g})}" th:text="${g}"></a>
-                                <span th:if="${!iterStat.last}">, </span>
-                                <span th:if="${!iterStat.last}">, </span>
+                                <span th:if="${!iterStat.last}">;</span>
                             </span>
                         </p>
                         <p class="movie-summary-item" th:text="${film.shortDescription}">
