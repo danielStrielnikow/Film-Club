@@ -91,7 +91,7 @@ a {
 
 /* Jumbotron zdjęcie */
 .jumbotron {
-    background-image: url("../img/background.jpg");
+    background-image: url("https://res.cloudinary.com/dap1zpgie/image/upload/v1748864100/background_muw0u6.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover; /* ważne - rozciąga obrazek proporcjonalnie */
