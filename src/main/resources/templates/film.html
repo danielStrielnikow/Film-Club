@@ -21,21 +21,25 @@
                          alt="tytuł filmu"
                          th:alt="${film.title}"
                          class="movie-list-item-poster">
-                <!-- informacje o filmie -->
-                <div class="movie-summary-info">
-                    <!-- Ustawiamy tytuły, krótki opis, rok -->
-                    <h1 class="movie-summary-title" th:text="${film.title}">Władca pierścieni</h1>
-                    <p class="movie-summary-original-title" th:text="${film.originalTitle}">Lord of the rings</p>
-                    <p class="movie-summary-item" th:text="|Rok: ${film.releaseYear}|">Rok: 2001</p>
-                    <!-- Ustawiamy link do strony gatunku filmowego, np. /gatunek/fantasy -->
-                    <p class="movie-summary-item">Gatunek: <a href="#"
-                                                              th:href="@{|/gatunek/${film.genre}|}"
-                                                              th:text="${film.genre}">Fantasy</a>
-                    </p>
-                    <p class="movie-summary-item" th:text="${film.shortDescription}">
-                        Podróż odważnego hobbita i jego towarzyszy w poszukiwaniu pierścienia.
-                    </p>
-                </div>
+                    <!-- informacje o filmie -->
+                    <div class="movie-summary-info">
+                        <!-- Ustawiamy tytuły, krótki opis, rok -->
+                        <h1 class="movie-summary-title" th:text="${film.title}">Władca pierścieni</h1>
+                        <p class="movie-summary-original-title" th:text="${film.originalTitle}">Lord of the rings</p>
+                        <p class="movie-summary-item" th:text="|Rok: ${film.releaseYear}|">Rok: 2001</p>
+                        <!-- Ustawiamy link do strony gatunku filmowego, np. /gatunek/fantasy -->
+                        <p class="movie-summary-item">
+                            Gatunek:
+                            <span th:each="g, iterStat : ${film.genre}">
+                                <a th:href="@{/gatunek/{name}(name=${g})}" th:text="${g}"></a>
+                                <span th:if="${!iterStat.last}">, </span>
+                                <span th:if="${!iterStat.last}">, </span>
+                            </span>
+                        </p>
+                        <p class="movie-summary-item" th:text="${film.shortDescription}">
+                            Podróż odważnego hobbita i jego towarzyszy w poszukiwaniu pierścienia.
+                        </p>
+                    </div>
             </div>
             <!-- Ocena -->
             <div class="movie-rating-container movie-section">
@@ -71,7 +75,8 @@
                 </form>
                 <!-- Ocena IMDb -->
                 <div class="imdb-rating">
-                    <p class="movie-rating-value imdb" th:text="'Ocena Imdb: ' + ${film.imdbRating != null ? #numbers.formatDecimal(film.imdbRating, 1, 1) : 'Brak danych'}">
+                    <p class="movie-rating-value imdb"
+                       th:text="'Ocena Imdb: ' + ${film.imdbRating != null ? #numbers.formatDecimal(film.imdbRating, 1, 1) : 'Brak danych'}">
                         Ocena IMDb: 8.5
                     </p>
                 </div>
@@ -96,8 +101,10 @@
         <section class="movie-section">
             <h2 class="movie-section-heading">Opis</h2>
             <!-- Ustawiamy pełny opis -->
-            <p th:text="${film.description}">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
-                Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
+            <p th:text="${film.description}">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
+                ante sollicitudin.
+                Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
+                vulputate fringilla.
                 Donec lacinia congue felis in faucibus.</p>
         </section>
     </main>

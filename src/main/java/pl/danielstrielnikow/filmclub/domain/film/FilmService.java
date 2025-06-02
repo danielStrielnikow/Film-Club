@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class FilmService {
@@ -116,11 +117,11 @@ public class FilmService {
     }
 
 
-    public Optional<FilmDto> findFilmIdByTitle(String title) {
-        return filmRepository.findByTitleIgnoreCase(title)
-                .map(FilmDtoMapper::map);
+    public List<FilmDto> findByTitleContaining(String partialTitle) {
+        return filmRepository.findByTitleContainingIgnoreCase(partialTitle).stream()
+                .map(FilmDtoMapper::map)
+                .toList();
     }
-
 
     @Transactional
     public void fetchAndSaveFilms() {

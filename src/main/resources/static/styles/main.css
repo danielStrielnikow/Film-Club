@@ -91,12 +91,20 @@ a {
 
 /* Jumbotron zdjęcie */
 .jumbotron {
-    background-image: url("../img/jumbotron.png");
+    background-image: url("../img/background.jpg");
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover; /* ważne - rozciąga obrazek proporcjonalnie */
+    min-height: 15vh; /* minimum pełna wysokość widoku przeglądarki */
     padding: 2rem;
     text-align: center;
+    color: white; /* tekst kontrastowy */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .jumbotron-header {
     font-size: 3rem;

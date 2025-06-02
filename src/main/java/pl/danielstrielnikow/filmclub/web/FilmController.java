@@ -54,11 +54,14 @@ public class FilmController {
     }
 
     @GetMapping("/film/szukaj-film")
-    public String searchFilmByTitle(@RequestParam String title) {
-        Long filmId = filmService.findFilmIdByTitle(title)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Film not found")).getId();
-        return "redirect:/film/" + filmId;
+    public String searchFilm(@RequestParam("title") String title, Model model) {
+        List<FilmDto> films = filmService.findByTitleContaining(title);
+        model.addAttribute("heading", "Wyniki wyszukiwania dla: \"" + title + "\"");
+        model.addAttribute("description", "Znaleziono " + films.size() + " film(ów) pasujących do frazy.");
+        model.addAttribute("films", films);
+        return "film-listing";
     }
+
 
 
 }
